@@ -169,5 +169,29 @@ const withBasePath = (path: string) => {
         </main>
         <Footer />
         <CookieBanner client:load />
+
+        <script>
+            import { inView, animate } from "motion";
+
+            // Global observer for `.fade-up` containers.
+            // The CSS sets them to opacity:0, but the components/pages that
+            // use this class only animate their *children* by ID — so the
+            // parent wrapper itself would stay invisible without this script.
+            function initFadeUpAnimations() {
+                const elements = document.querySelectorAll(".fade-up");
+                elements.forEach((el) => {
+                    inView(el, () => {
+                        animate(
+                            el,
+                            { opacity: [0, 1], y: [40, 0] },
+                            { duration: 0.8, easing: "ease-out" },
+                        );
+                    });
+                });
+            }
+
+            initFadeUpAnimations();
+            document.addEventListener("astro:after-swap", initFadeUpAnimations);
+        </script>
     </body>
 </html>
