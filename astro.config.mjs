@@ -4,8 +4,8 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jesusdavid.net",
-  base: "/portafolio/anaalbiol",
+  site: "https://jedav.link",
+  base: "/anaalbiol",
   output: "static",
   integrations: [svelte(), sitemap()],
   fonts: [

@@ -10,8 +10,8 @@ Este proyecto es una demostración tecnológica de la web oficial de Ana Albiol,
 - **Framework Principal:** [Astro 6.0.8](https://astro.build/)
 - **Componentes de UI:** [Svelte 5.55.0](https://svelte.dev/)
 - **Arquitectura:** Static Output. Archivos HTML, CSS y JS pre-generados en `/dist`, desplegados via Nginx en Docker.
-- **URL Demo:** `https://jesusdavid.net/portafolio/anaalbiol/` (subpath del portafolio del autor; el sitio NO se publica en `anaalbiol.com`)
-- **Base Path:** `/portafolio/anaalbiol` — todos los assets, enlaces internos y URLs del sitemap usan este prefijo.
+- **URL Demo:** `https://jedav.link/anaalbiol/` (subpath del dominio del autor; el sitio NO se publica en `anaalbiol.com`)
+- **Base Path:** `/anaalbiol` — todos los assets, enlaces internos y URLs del sitemap usan este prefijo.
 
 ## 🛠️ Stack Tecnológico
 
@@ -104,8 +104,8 @@ Para mantener la coherencia con la visión de Ana Albiol, cualquier cambio en la
 
 El proyecto está configurado con:
 
-- **site:** `https://jesusdavid.net` (URL base para sitemaps y Open Graph)
-- **base:** `/portafolio/anaalbiol` (subpath donde se sirve la demo; aplicado a todos los assets/enlaces)
+- **site:** `https://jedav.link` (URL base para sitemaps y Open Graph)
+- **base:** `/anaalbiol` (subpath donde se sirve la demo; aplicado a todos los assets/enlaces)
 - **output:** `static` (genera HTML estático optimizado)
 - **Integraciones activas:**
   - `@astrojs/svelte` para componentes interactivos
