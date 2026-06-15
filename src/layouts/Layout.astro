@@ -53,6 +53,11 @@ const withBasePath = (path: string) => {
         <title>{title}</title>
         <link rel="canonical" href={canonicalURL.href} />
 
+        <!-- Demo: bloquear indexación en todos los buscadores -->
+        <meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+        <meta name="googlebot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+        <meta name="bingbot" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache" />
+
         <!-- Astro Font Component for Google Fonts -->
         <Font cssVariable="--font-body" preload />
         <Font cssVariable="--font-subtitle" preload />

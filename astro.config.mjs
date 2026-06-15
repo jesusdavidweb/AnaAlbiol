@@ -1,13 +1,12 @@
 import { defineConfig, fontProviders } from "astro/config";
 import svelte from "@astrojs/svelte";
-import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jedav.link",
+  site: "https://demo.jedav.link",
   base: "/anaalbiol",
   output: "static",
-  integrations: [svelte(), sitemap()],
+  integrations: [svelte()],
   fonts: [
     {
       provider: fontProviders.fontsource(),

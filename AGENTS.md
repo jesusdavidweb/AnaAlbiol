@@ -10,8 +10,13 @@ Este proyecto es una demostración tecnológica de la web oficial de Ana Albiol,
 - **Framework Principal:** [Astro 6.0.8](https://astro.build/)
 - **Componentes de UI:** [Svelte 5.55.0](https://svelte.dev/)
 - **Arquitectura:** Static Output. Archivos HTML, CSS y JS pre-generados en `/dist`, desplegados via Nginx en Docker.
-- **URL Demo:** `https://jedav.link/anaalbiol/` (subpath del dominio del autor; el sitio NO se publica en `anaalbiol.com`)
-- **Base Path:** `/anaalbiol` — todos los assets, enlaces internos y URLs del sitemap usan este prefijo.
+- **URL Demo:** `https://demo.jedav.link/anaalbiol/` (subdominio demo del autor; el sitio NO se publica en `anaalbiol.com`)
+- **Base Path:** `/anaalbiol` — todos los assets y enlaces internos usan este prefijo.
+- **Indexación:** **DESACTIVADA por completo.** Esta es una demo y no debe aparecer en Google ni en ningún buscador. Se aplica triple barrera:
+  1. `robots.txt` con `Disallow: /` (sin línea Sitemap).
+  2. `<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex, nocache">` en todas las páginas (vía `Layout.astro`).
+  3. Meta tags específicos para `googlebot` y `bingbot` con la misma directiva.
+  4. Integración `@astrojs/sitemap` deshabilitada (no se genera `sitemap-index.xml` ni `sitemap-0.xml`).
 
 ## 🛠️ Stack Tecnológico
 
@@ -104,12 +109,12 @@ Para mantener la coherencia con la visión de Ana Albiol, cualquier cambio en la
 
 El proyecto está configurado con:
 
-- **site:** `https://jedav.link` (URL base para sitemaps y Open Graph)
+- **site:** `https://demo.jedav.link` (URL base para Open Graph y canonical; el sitio NO se indexa)
 - **base:** `/anaalbiol` (subpath donde se sirve la demo; aplicado a todos los assets/enlaces)
 - **output:** `static` (genera HTML estático optimizado)
 - **Integraciones activas:**
   - `@astrojs/svelte` para componentes interactivos
-  - `@astrojs/sitemap` para SEO automático (emite `sitemap-index.xml` con la URL demo)
+  - **Sin sitemap** — el sitio no debe indexarse, por lo que se eliminó `@astrojs/sitemap` de las integraciones.
 - **Fuentes via Fontsource:**
   - **Inter** (Body, weights: 400, 600) - `--font-body`
   - **Poppins** (Subtitles, weights: 400, 600) - `--font-subtitle`

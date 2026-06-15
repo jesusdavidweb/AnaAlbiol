@@ -8,6 +8,8 @@
 
 **Diseño y desarrollo web para la marca personal de Ana Albiol**, escritora, formadora y conferenciante bajo el lema *"Vivir antes de morir"*. Un sitio estático de alto rendimiento construido con un enfoque en la identidad visual, la calidad emocional del contenido y la escalabilidad técnica.
 
+> **Nota:** Este repositorio es una **demo pública** servida desde `https://demo.jedav.link/anaalbiol/`. El sitio está configurado para **no indexarse en buscadores** (`noindex` en todas las páginas, `robots.txt` con `Disallow: /`, sin sitemap).
+
 <br />
 
 ![Preview del sitio web](docs/website_preview.webp)
