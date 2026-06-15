@@ -688,6 +688,7 @@ import heroImg from "../assets/images/PRINT_AnaAlbiol_EA-37.webp";
 </style>
 
 <script>
+    const basePath = import.meta.env.BASE_URL;
     const form = document.getElementById("contact-form") as HTMLFormElement;
     const submitBtn = document.getElementById("contact-submit");
 
@@ -710,7 +711,10 @@ import heroImg from "../assets/images/PRINT_AnaAlbiol_EA-37.webp";
 
             // Simulate sending, then redirect to thank you page
             setTimeout(() => {
-                window.location.href = "/gracias";
+                const thanksPath = basePath.endsWith("/")
+                    ? `${basePath}gracias`
+                    : `${basePath}/gracias`;
+                window.location.href = thanksPath;
             }, 600);
         });
     }

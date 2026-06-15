@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://anaalbiol.com/sitemap-index.xml
+Sitemap: https://jesusdavid.net/portafolio/anaalbiol/sitemap-index.xml

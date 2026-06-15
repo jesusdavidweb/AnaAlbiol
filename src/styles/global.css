@@ -398,59 +398,6 @@ em {
   background-color: var(--color-white);
 }
 
-/* Maintenance page styles */
-.maintenance {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(180deg, var(--color-secondary) 0%, #ffffff 100%);
-  color: var(--color-primary);
-  padding: var(--spacing-lg) 0;
-}
-
-.maintenance h1 {
-  font-size: 3rem;
-  margin-bottom: var(--spacing-sm);
-  color: var(--color-primary);
-}
-
-.maintenance p {
-  color: var(--color-text-light);
-  margin-bottom: var(--spacing-md);
-  font-size: 1.125rem;
-}
-
-.maintenance .btn {
-  padding: 0.75rem 2rem;
-}
-
-/* Site-wide construction banner */
-.maintenance-home .maintenance-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-xl) 0;
-}
-
-.maintenance-logo {
-  width: 420px;
-  max-width: 80%;
-  height: auto;
-  display: block;
-}
-
-.maintenance-home h1 {
-  font-size: 2.25rem;
-  margin-top: 0;
-}
-
-.maintenance-home p {
-  font-size: 1.125rem;
-}
-
 .header-dark-bg:not(.scrolled) .logo img {
   filter: brightness(0) invert(1);
 }

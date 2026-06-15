@@ -4,12 +4,14 @@ Este archivo proporciona el contexto técnico y operativo para trabajar en el re
 
 ## 🌟 Resumen del Proyecto
 
-Este proyecto es una demostración tecnológica de la web oficial de Ana Albiol, diseñada con un enfoque en el rendimiento extremo, SEO optimizado y una experiencia de usuario emocional y fluida.
+Este proyecto es una demostración tecnológica de la web oficial de Ana Albiol, diseñada con un enfoque en el rendimiento extremo, SEO optimizado y una experiencia de usuario emocional y fluida. Funciona como **demo pública** desplegada bajo el subpath del portafolio del autor.
 
 - **Tipo de Proyecto:** Sitio Estático Generado (SSG)
 - **Framework Principal:** [Astro 6.0.8](https://astro.build/)
 - **Componentes de UI:** [Svelte 5.55.0](https://svelte.dev/)
 - **Arquitectura:** Static Output. Archivos HTML, CSS y JS pre-generados en `/dist`, desplegados via Nginx en Docker.
+- **URL Demo:** `https://jesusdavid.net/portafolio/anaalbiol/` (subpath del portafolio del autor; el sitio NO se publica en `anaalbiol.com`)
+- **Base Path:** `/portafolio/anaalbiol` — todos los assets, enlaces internos y URLs del sitemap usan este prefijo.
 
 ## 🛠️ Stack Tecnológico
 
@@ -102,11 +104,12 @@ Para mantener la coherencia con la visión de Ana Albiol, cualquier cambio en la
 
 El proyecto está configurado con:
 
-- **site:** `https://anaalbiol.com` (URL base para sitemaps y Open Graph)
+- **site:** `https://jesusdavid.net` (URL base para sitemaps y Open Graph)
+- **base:** `/portafolio/anaalbiol` (subpath donde se sirve la demo; aplicado a todos los assets/enlaces)
 - **output:** `static` (genera HTML estático optimizado)
 - **Integraciones activas:**
   - `@astrojs/svelte` para componentes interactivos
-  - `@astrojs/sitemap` para SEO automático
+  - `@astrojs/sitemap` para SEO automático (emite `sitemap-index.xml` con la URL demo)
 - **Fuentes via Fontsource:**
   - **Inter** (Body, weights: 400, 600) - `--font-body`
   - **Poppins** (Subtitles, weights: 400, 600) - `--font-subtitle`

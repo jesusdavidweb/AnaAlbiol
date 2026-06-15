@@ -8,8 +8,6 @@ import { ClientRouter } from "astro:transitions";
 import { fade } from "astro:transitions";
 
 import CookieBanner from "../components/CookieBanner.svelte";
-// Import logo as URL to use in <img src>
-import logoUrl from "../assets/images/LOGO_AnaAlbiol_Color.svg?url";
 
 import ogImg from "../assets/images/WEB_AnaAlbiolJUN25-26.webp";
 
@@ -27,9 +25,23 @@ const {
     preloadImage,
 } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-// FORCE maintenance while temporary homepage is active
-const maintenance = true;
-
+const basePath = import.meta.env.BASE_URL;
+const basePathWithoutTrailingSlash =
+    basePath.length > 1 && basePath.endsWith("/")
+        ? basePath.slice(0, -1)
+        : basePath;
+const currentPath =
+    basePathWithoutTrailingSlash !== "/" &&
+    Astro.url.pathname.startsWith(basePathWithoutTrailingSlash)
+        ? Astro.url.pathname.slice(basePathWithoutTrailingSlash.length) || "/"
+        : Astro.url.pathname;
+const withBasePath = (path: string) => {
+    const normalizedPath = path.startsWith("/") ? path : `/${path}`;
+    if (basePathWithoutTrailingSlash === "/") {
+        return normalizedPath;
+    }
+    return `${basePathWithoutTrailingSlash}${normalizedPath}`;
+};
 ---
 
 <!doctype html>
@@ -86,7 +98,7 @@ const maintenance = true;
         <link
             rel="icon"
             type="image/svg+xml"
-            href="/images/favicon-ana.svg"
+            href={withBasePath("/images/favicon-ana.svg")}
         />
 
         <!-- View Transitions -->
@@ -102,22 +114,55 @@ const maintenance = true;
                 );
             }
         </script>
+        <script is:inline define:vars={{ basePath }}>
+            const applyBasePathToInternalLinks = () => {
+                if (basePath === "/") {
+                    return;
+                }
+
+                const prefix =
+                    basePath.length > 1 && basePath.endsWith("/")
+                        ? basePath.slice(0, -1)
+                        : basePath;
+
+                document
+                    .querySelectorAll('a[href^="/"], form[action^="/"]')
+                    .forEach((element) => {
+                        const attribute =
+                            element.tagName === "FORM" ? "action" : "href";
+                        const value = element.getAttribute(attribute);
+
+                        if (
+                            !value ||
+                            value.startsWith("//") ||
+                            value.startsWith(`${prefix}/`)
+                        ) {
+                            return;
+                        }
+
+                        element.setAttribute(attribute, `${prefix}${value}`);
+                    });
+            };
+
+            document.addEventListener("DOMContentLoaded", () => {
+                applyBasePathToInternalLinks();
+            });
+
+            document.addEventListener("astro:after-swap", () => {
+                applyBasePathToInternalLinks();
+            });
+        </script>
     </head>
     <body>
-        <!-- Header / footer and interactive scripts hidden while maintenance is active -->
-        { maintenance ? (
-            <main class="maintenance maintenance-home">
-                <div class="maintenance-content">
-                    <img src={logoUrl} alt="Ana Albiol" class="maintenance-logo" />
-                    <h1>En construcción</h1>
-                    <p>Estamos realizando mejoras. Volvemos pronto.</p>
-                </div>
-            </main>
-        ) : (
-            <main transition:animate={fade({ duration: "0.35s" })}>
-                <slot />
-            </main>
-        ) }
-
+        <Header
+            client:load
+            theme={headerTheme}
+            currentPath={currentPath}
+        />
+        <main transition:animate={fade({ duration: "0.35s" })}>
+            <slot />
+        </main>
+        <Footer />
+        <CookieBanner client:load />
     </body>
 </html>
